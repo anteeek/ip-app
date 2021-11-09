@@ -1,7 +1,7 @@
 import { SearchBox } from "./SearchBox";
 import React from "react";
 import { useQuery } from "react-query";
-import { translateIPToLocation } from "../../lib/IPLocation";
+import { ipOrDomainToLocation } from "../../lib/IPLocation";
 import { getHistory, saveSearch } from "../../lib/searchHistory";
 import { SearchHistory } from "./SearchHistory";
 import { getMyIP } from "../../lib/myIP";
@@ -57,7 +57,7 @@ export function IPLocator() {
 
         {searchedIp && (
           <section className="py-4">
-            <h2 className="text-4xl pb-4">Location of IP {searchedIp}</h2>
+            <h2 className="text-4xl pb-4">Location of IP/URL {searchedIp}</h2>
             {searchedIpLocationError ? (
               <label
                 aria-errormessage={searchedIpLocationError}
@@ -82,7 +82,7 @@ function useMyIPLocation() {
     ["my-ip-location", myIp],
     async () => {
       if (myIp) {
-        return translateIPToLocation(myIp);
+        return ipOrDomainToLocation(myIp);
       }
     },
     {
@@ -115,7 +115,7 @@ function useSearchedIP() {
     ["searched-ip-location", searchedIp],
     () => {
       if (searchedIp) {
-        return translateIPToLocation(searchedIp);
+        return ipOrDomainToLocation(searchedIp);
       }
     },
     {

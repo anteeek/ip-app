@@ -1,21 +1,21 @@
-export async function translateIPToLocation(
-  ipAddress: string
+export async function ipOrDomainToLocation(
+  ipOrDomain: string
 ): Promise<IPLocation> {
-  const result = await fetch(`https://ipapi.co/${ipAddress}/json`).then((res) =>
-    res.json()
-  );
+  const result = await fetch(
+    `https://ipwhois.app/json/${ipOrDomain}?lang=en`
+  ).then((res) => res.json());
 
   if (result?.error) {
     throw new Error(result.reason);
   }
 
   if (!result?.latitude || !result?.longitude) {
-    throw new Error(`No location data for IP ${ipAddress}`);
+    throw new Error(`No location data for IP ${ipOrDomain}`);
   }
 
   return {
     city: result.city,
-    country: result.country_name,
+    country: result.country,
     latitude: result.latitude,
     longitude: result.longitude,
   };

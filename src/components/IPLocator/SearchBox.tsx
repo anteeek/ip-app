@@ -9,7 +9,7 @@ export function SearchBox({
   const [error, setError] = React.useState<string>();
 
   const handleSearch = () => {
-    if (isIpValid(searchPhrase)) {
+    if (isIpOrUrlValid(searchPhrase)) {
       onSearch(searchPhrase);
       setSearchPhrase("");
       setError(undefined);
@@ -51,6 +51,10 @@ export function SearchBox({
   );
 }
 
-function isIpValid(candidateIp: string) {
-  return !!candidateIp?.match(/^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/);
+const IP_REGEX = /^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$/;
+const URL_REGEX =
+  /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)/;
+
+function isIpOrUrlValid(candidateIp: string) {
+  return !!candidateIp?.match(IP_REGEX) || !!candidateIp?.match(URL_REGEX);
 }
