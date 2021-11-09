@@ -23,9 +23,12 @@ export function IPLocator() {
   const handleSelectHistoryEntry = (historyEntry: string) => {
     if (historyEntry !== searchedIp) {
       handleSearch(historyEntry);
-      reloadSearchHistory();
     }
   };
+
+  React.useEffect(() => {
+    reloadSearchHistory();
+  }, [searchedIp]);
 
   return (
     <main className="flex flex-col-reverse lg:flex-row gap-20 px-4 xl:max-h-screen">
