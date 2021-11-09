@@ -5,8 +5,12 @@ export async function translateIPToLocation(
     res.json()
   );
 
-  if (result.error) {
+  if (result?.error) {
     throw new Error(result.reason);
+  }
+
+  if (!result?.latitude || !result?.longitude) {
+    throw new Error(`No location data for IP ${ipAddress}`);
   }
 
   return {

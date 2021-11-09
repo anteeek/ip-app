@@ -6,7 +6,6 @@ import { getHistory, saveSearch } from "../../lib/searchHistory";
 import { SearchHistory } from "./SearchHistory";
 import { getMyIP } from "../../lib/myIP";
 import { IPInformation } from "./IPInformation";
-import { ErrorMessage } from "../UI/ErrorMessage";
 import { toast } from "react-toastify";
 
 export function IPLocator() {
@@ -43,7 +42,14 @@ export function IPLocator() {
             {myIp ? `Your IP (${myIp}) location` : `Your IP location`}
           </h2>
           <IPInformation ip={myIp} location={myIpLocation} />
-          {myIpLocationError && <ErrorMessage error={myIpLocationError} />}
+          {myIpLocationError && (
+            <label
+              aria-errormessage={myIpLocationError}
+              className="text-error text-2xl font-bold"
+            >
+              {myIpLocationError}
+            </label>
+          )}
         </section>
 
         <SearchBox onSearch={handleSearch} />
@@ -52,7 +58,12 @@ export function IPLocator() {
           <section className="py-4">
             <h2 className="text-4xl pb-4">Location of IP {searchedIp}</h2>
             {searchedIpLocationError ? (
-              <ErrorMessage error={searchedIpLocationError} />
+              <label
+                aria-errormessage={searchedIpLocationError}
+                className="text-error text-2xl font-bold"
+              >
+                {searchedIpLocationError}
+              </label>
             ) : (
               <IPInformation ip={searchedIp} location={searchedIpLocation} />
             )}

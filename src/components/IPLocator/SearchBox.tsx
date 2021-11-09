@@ -1,5 +1,4 @@
 import React from "react";
-import { ErrorMessage } from "../UI/ErrorMessage";
 
 export function SearchBox({
   onSearch,
@@ -43,7 +42,11 @@ export function SearchBox({
           Search
         </button>
       </div>
-      {error && <ErrorMessage error={error} />}
+      {error && (
+        <label aria-errormessage={error} className="text-error">
+          {error}
+        </label>
+      )}
     </div>
   );
 }
