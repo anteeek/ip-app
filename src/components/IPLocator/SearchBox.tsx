@@ -1,4 +1,5 @@
 import React from "react";
+import { ErrorMessage } from "../UI/ErrorMessage";
 
 export function SearchBox({
   onSearch,
@@ -19,10 +20,10 @@ export function SearchBox({
   };
 
   return (
-    <div className="flex flex-col ">
+    <div className="flex flex-col max-w-2xl">
       <div className="flex gap-5">
         <input
-          className="border-4 border-primary text-xl px-2"
+          className="border-4 border-primary text-xl px-2 w-full"
           value={searchPhrase}
           placeholder="8.8.8.8"
           onChange={(e) => setSearchPhrase(e.target.value)}
@@ -42,11 +43,7 @@ export function SearchBox({
           Search
         </button>
       </div>
-      {error && (
-        <label aria-errormessage={error} className="text-error">
-          {error}
-        </label>
-      )}
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 }

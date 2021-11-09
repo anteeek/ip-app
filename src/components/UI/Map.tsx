@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { TileLayer, Marker, Popup, MapContainer } from "react-leaflet";
 
 export interface MapProps {
   location: {
@@ -15,6 +15,7 @@ export function Map(props: MapProps) {
       center={[latitude, longitude]}
       zoom={13}
       scrollWheelZoom={false}
+      className="h-full w-full"
     >
       <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

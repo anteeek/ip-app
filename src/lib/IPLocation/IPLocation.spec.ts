@@ -7,4 +7,12 @@ describe("IP location service", () => {
     expect(result.city).toEqual("Mountain View");
     expect(result.country).toEqual("United States");
   });
+
+  it("Should throw an error on invalid IP address", async () => {
+    const invalidIps = ["453.345.345.345", "ddddddddddd"];
+
+    for (const invalidIp in invalidIps) {
+      expect(translateIPToLocation).rejects.toThrowError("Invalid IP Address");
+    }
+  });
 });

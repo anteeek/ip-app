@@ -1,9 +1,13 @@
 export async function translateIPToLocation(
   ipAddress: string
-): Promise<IPLocationSearchResult> {
+): Promise<IPLocation> {
   const result = await fetch(`https://ipapi.co/${ipAddress}/json`).then((res) =>
     res.json()
   );
+
+  if (result.error) {
+    throw new Error(result.reason);
+  }
 
   return {
     city: result.city,
@@ -13,7 +17,7 @@ export async function translateIPToLocation(
   };
 }
 
-export interface IPLocationSearchResult {
+export interface IPLocation {
   city: string;
   country: string;
   latitude: number;
