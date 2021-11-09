@@ -8,20 +8,16 @@ export function SearchHistory({
   const chronologicalSearchHistory = searchHistory.slice(0).reverse();
 
   return (
-    <div className="p-5 h-full">
-      <h2 className="text-4xl">Search history</h2>
-
-      <ul className="divide-y-2 divide-primary md:max-h-full overflow-auto">
-        {chronologicalSearchHistory.map((historyEntry, i) => (
-          <li
-            key={i}
-            className="text-center text-2xl py-2 hover:bg-primary hover:text-primaryText cursor-pointer"
-            onClick={() => onSelectHistoryEntry(historyEntry)}
-          >
-            {historyEntry}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <ul className="h-full divide-y-2 divide-primary md:max-h-full overflow-auto">
+      {chronologicalSearchHistory.map((historyEntry, i) => (
+        <li
+          key={i}
+          className="text-center text-2xl py-2 hover:bg-primary hover:text-primaryText cursor-pointer"
+          onClick={() => onSelectHistoryEntry(historyEntry)}
+        >
+          {historyEntry}
+        </li>
+      ))}
+    </ul>
   );
 }

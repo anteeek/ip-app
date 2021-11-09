@@ -11,7 +11,7 @@ export function IPInformation({
   location?: IPLocation;
 }) {
   return (
-    <div className="flex gap-10 h-80">
+    <div className="flex gap-10 lg:h-96 xl:h-80">
       <div className="flex-1 flex justify-center align-center">
         {location ? (
           <Map location={location} />

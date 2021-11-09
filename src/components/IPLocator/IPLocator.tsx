@@ -28,8 +28,9 @@ export function IPLocator() {
   };
 
   return (
-    <main className="flex gap-2 sm:max-h-screen">
-      <div className="w-1/3">
+    <main className="flex flex-col-reverse lg:flex-row gap-20 px-4 xl:max-h-screen">
+      <div className="lg:w-1/3 py-4">
+        <h2 className="text-4xl whitespace-nowrap pb-4">Search history</h2>
         <SearchHistory
           searchHistory={searchHistory}
           onSelectHistoryEntry={handleSelectHistoryEntry}
